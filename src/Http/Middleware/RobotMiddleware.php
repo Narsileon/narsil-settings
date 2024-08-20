@@ -16,7 +16,7 @@ use Narsil\Settings\Models\Setting;
  *
  * @author Jonathan Rigaux
  */
-final class Robots
+final class RobotMiddleware
 {
     #region CONSTANTS
 
