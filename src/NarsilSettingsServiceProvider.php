@@ -4,7 +4,10 @@ namespace Narsil\Settings;
 
 #region USE
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Settings\Models\Setting;
+use Narsil\Settings\Policies\SettingPolicy;
 
 #endregion
 
@@ -23,6 +26,7 @@ final class NarsilSettingsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->bootMigrations();
+        $this->bootPolicies();
     }
 
     #endregion
@@ -37,6 +41,14 @@ final class NarsilSettingsServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom([
             __DIR__ . '/../database/migrations',
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    private function bootPolicies(): void
+    {
+        Gate::policy(Setting::class, SettingPolicy::class);
     }
 
     #endregion

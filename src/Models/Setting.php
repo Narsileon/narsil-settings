@@ -71,7 +71,7 @@ class Setting extends Model
      *
      * @return mixed
      */
-    public static function get(string $key, $default = null): mixed
+    final public static function get(string $key, $default = null): mixed
     {
         return Cache::rememberForever(self::TABLE . ".$key", function () use ($key, $default)
         {
@@ -87,7 +87,7 @@ class Setting extends Model
      *
      * @return void
      */
-    public static function set(string $key, $value): void
+    final public static function set(string $key, $value): void
     {
         $setting = self::updateOrCreate([
             self::KEY => $key
